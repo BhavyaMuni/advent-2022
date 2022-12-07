@@ -37,7 +37,7 @@ from collections import defaultdict
 #     return out
 
 
-def new_main():
+def main():
 
     with open("input.txt", "r") as f:
         lines = f.read().splitlines()
@@ -73,6 +73,46 @@ def new_main():
     return out
 
 
+def part2():
+
+    with open("input.txt", "r") as f:
+        lines = f.read().splitlines()
+        dir_totals = defaultdict(int)
+        curr_dir = ""
+        parent_dir = []
+        for x, i in enumerate(lines):
+            if i[0] == "$":
+                if i == "$ cd ..":
+                    ix = curr_dir[::-1].index("/", 1)
+                    parent_dir.pop()
+                    curr_dir = "".join(curr_dir[:-ix])
+                elif i == "$ ls":
+                    pass
+                else:
+                    parent_dir.append(curr_dir)
+                    curr_dir += i.split()[2] + "/"
+            else:
+                if "dir " in i:
+                    pass
+                else:
+                    size = int(i.split()[0])
+                    dir_totals[curr_dir] += size
+                    for i in parent_dir:
+                        dir_totals[i] += size
+            # print(curr_dir)
+            
+    curr_min = dir_totals["//"]
+    current_unused = 70000000 - dir_totals["//"]
+    required = 30000000 - current_unused
+    print(required)
+    for i in dir_totals:
+        if dir_totals[i] > required:
+            curr_min = min(curr_min, dir_totals[i])
+
+    print(curr_min)
+    # print(sorted(dir_totals, key=lambda x: dir_totals[x]))
+
+
 if __name__ == "__main__":
     # print(main())
-    print(new_main())
+    print(part2())
