@@ -29,17 +29,17 @@ with open("input_day2.txt", "r") as f:
         cur = 0
         e, u = line.split()
         print(e + " " + u)
-        if u == 'X':
-            test = e_dict2[e]-1
+        if u == "X":
+            test = e_dict2[e] - 1
             if test < 1:
                 test = 3
             cur += test + 0
             print(cur)
-        elif u == 'Y':
+        elif u == "Y":
             cur += e_dict2[e] + 3
             print(cur)
         else:
-            test = e_dict2[e]+1
+            test = e_dict2[e] + 1
             if test > 3:
                 test = 1
             cur += test + 6

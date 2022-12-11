@@ -8,7 +8,9 @@ def main():
             int1min, int1max = int(int1.split("-")[0]), int(int1.split("-")[1])
             int2min, int2max = int(int2.split("-")[0]), int(int2.split("-")[1])
 
-            if (int1min >= int2min and int1max <= int2max) or (int2min >= int1min and int2max <= int1max):
+            if (int1min >= int2min and int1max <= int2max) or (
+                int2min >= int1min and int2max <= int1max
+            ):
                 out += 1
 
     return out
@@ -24,8 +26,12 @@ def main2():
             int1min, int1max = int(int1.split("-")[0]), int(int1.split("-")[1])
             int2min, int2max = int(int2.split("-")[0]), int(int2.split("-")[1])
 
-            # if (int1min >= int2min and int1max <= int2max) or (int2min >= int1min and int2max <= int1max):
-            if (int1min >= int2min and int1min <= int2max) or (int1max >= int2min and int1max <= int2max) or (int1min >= int2min and int1max <= int2max) or (int2min >= int1min and int2max <= int1max):
+            if (
+                (int1min >= int2min and int1min <= int2max)
+                or (int1max >= int2min and int1max <= int2max)
+                or (int1min >= int2min and int1max <= int2max)
+                or (int2min >= int1min and int2max <= int1max)
+            ):
                 # print(f"{int1min} {int2min}")
                 out += 1
 

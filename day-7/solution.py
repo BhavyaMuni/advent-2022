@@ -1,4 +1,5 @@
 from collections import defaultdict
+
 # def main():
 #     all_dirs = []
 #     out = 0
@@ -28,12 +29,12 @@ from collections import defaultdict
 #         for x in sub_dirs:
 #             for a in sub_dirs[x]:
 #                 dir_totals[x] += dir_totals[a]
-        
+
 #         for i in dir_totals:
 #             if dir_totals[i] <= 100000:
 #                 print(i, dir_totals[i])
 #                 out += dir_totals[i]
-            
+
 #     return out
 
 
@@ -100,7 +101,7 @@ def part2():
                     for i in parent_dir:
                         dir_totals[i] += size
             # print(curr_dir)
-            
+
     curr_min = dir_totals["//"]
     current_unused = 70000000 - dir_totals["//"]
     required = 30000000 - current_unused
