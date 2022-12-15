@@ -34,26 +34,30 @@ def main2() -> set():
     with open("input.txt", "r") as f:
         lines = f.read().splitlines()
         visited = set()
+        tails = [[0, 0] for i in range(10)]
         directions = {"R": (1, 0), "L": (-1, 0), "U": (0, 1), "D": (0, -1)}
-        h = [0, 0]
-        t = [0, 0]
+        # h = [0, 0]
+        # t = [0, 0]
         for line in lines:
             direction, steps = line.split()
             steps = int(steps)
             for i in range(steps):
-                h[0] += directions[direction][0]
-                h[1] += directions[direction][1]
-                dx = t[0] - h[0]
-                dy = t[1] - h[1]
-                if abs(dx) + abs(dy) >= 3:
-                    t[0] += -1 if dx > 0 else 1
-                    t[1] += -1 if dy > 0 else 1
-                elif abs(dx) > 1:
-                    t[0] += -1 if dx > 0 else 1
-                elif abs(dy) > 1:
-                    t[1] += -1 if dy > 0 else 1
+                # h[0] += directions[direction][0]
+                tails[0][0] += directions[direction][0]
+                # h[1] += directions[direction][1]
+                tails[0][1] += directions[direction][1]
+                for i in range(1, len(tails)):
+                    dx = tails[i][0] - tails[i - 1][0]
+                    dy = tails[i][1] - tails[i - 1][1]
+                    if abs(dx) + abs(dy) >= 3:
+                        tails[i][0] += -1 if dx > 0 else 1
+                        tails[i][1] += -1 if dy > 0 else 1
+                    elif abs(dx) > 1:
+                        tails[i][0] += -1 if dx > 0 else 1
+                    elif abs(dy) > 1:
+                        tails[i][1] += -1 if dy > 0 else 1
 
-                visited.add((t[0], t[1]))
+                visited.add((tails[-1][0], tails[-1][1]))
 
                 # print(f"head: {h}")
                 # print(f"tail: {t}")
@@ -63,4 +67,5 @@ def main2() -> set():
 
 
 if __name__ == "__main__":
-    print(main())
+    # print(main())
+    print(main2())
