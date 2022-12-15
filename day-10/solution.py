@@ -25,6 +25,45 @@ def main():
     return out
 
 
+def printCRT(cycles, x):
+
+    if cycles == x or cycles + 1 == x or cycles - 1 == x:
+        print("#", end="")
+    else:
+        print(".", end="")
+
+    if cycles == 39:
+        print("")
+        return -1
+    return cycles
+
+
+def main2():
+    with open("input.txt", "r") as f:
+        lines = f.read().splitlines()
+        cycles = 0
+        x = 1
+        out = 0
+        new_val = 0
+        for line in lines:
+            if "add" in line:
+                new_val = int(line.split()[1])
+                cycles = printCRT(cycles, x)
+                cycles += 1
+                cycles = printCRT(cycles, x)
+                cycles += 1
+            else:
+                new_val = 0
+                cycles = printCRT(cycles, x)
+                cycles += 1
+            x += new_val
+
+    print("\n")
+
+    # return out
+
+
 if __name__ == "__main__":
 
-    print(main())
+    # print(main())
+    main2()
